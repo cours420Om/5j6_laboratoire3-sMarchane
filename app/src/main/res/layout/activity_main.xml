@@ -6,13 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_barreAction"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="4dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/et_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/et_text"
+        android:layout_width="297dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="76dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Entrer le texte à crypter ou décrypter"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_crypter"
+        android:layout_width="108dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="48dp"
+        android:text="Crypter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_text" />
+
+    <Button
+        android:id="@+id/btn_decrypter"
+        android:layout_width="107dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="48dp"
+        android:text="decrypter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_crypter"
+        app:layout_constraintTop_toBottomOf="@+id/et_text" />
+
+    <TextView
+        android:id="@+id/tv_reception"
+        android:layout_width="288dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="228dp"
+        android:hint="Texte à recevoir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
