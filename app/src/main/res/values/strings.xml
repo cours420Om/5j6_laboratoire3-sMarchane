@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Labo3</string>
+    <string name="app_name">Machine de cryptage</string>
     <string name="ouvrir">Ouvrir</string>
     <string name="sauvegarder">Sauvegarder</string>
     <string name="cleDecalage">Clé de décalage</string>

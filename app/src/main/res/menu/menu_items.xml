@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnu_ouvrir"
+        android:icon="@drawable/ouvrir"
+        android:title="Ouvrir"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/mnu_sauvegarde"
+        android:icon="@drawable/sauvegarde"
+        android:title="Sauvegarder"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/mnu_cle"
+        android:title="cle"
+        />
+    <item
+        android:id="@+id/mnu_quitter"
+        android:title="Quitter" />
 
 </menu>
