@@ -75,33 +75,25 @@ public class MainActivity extends AppCompatActivity {
                 Bundle extras = getIntent().getExtras();
                 String cle = extras.getString("cle");
 
-                crypter(et_texte.getText().toString(), Integer.parseInt(cle));/*try {
-                    FileOutputStream fichierOut = new FileOutputStream(monFichierExternes);
-                    fichierOut.write(et_texte.getText().toString().getBytes());
-                    fichierOut.close();
-                    et_texte.setText("");
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                /*FileInputStream fichierIN = null;
-                try{
-                    fichierIN = new FileInputStream(monFichierExternes);
-                    DataInputStream streamReader = new DataInputStream(fichierIN);
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(streamReader));
-                    String ligne;
-                    while((ligne = bufferedReader.readLine()) != null){
-                        mesDonnees = mesDonnees + ligne;
-                    }
-                    streamReader.close();
-                }catch(FileNotFoundException e){
-                    e.printStackTrace();
-                }catch(IOException e){
-                    e.printStackTrace();
-                }*/
-                //tv_recu.setText(mesDonnees);
+                crypter(et_texte.getText().toString(), Integer.parseInt(cle));
+            }
+        });
+
+        //Bouton décrypté
+
+        btn_decrypter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle extras = getIntent().getExtras();
+                String cle = extras.getString("cle");
+
+                decrypter(et_texte.getText().toString(), Integer.parseInt(cle));
+
             }
         });
     }
+    //Méthode pour crypter
+
     public String crypter(String message, int cle){
         message = message.toLowerCase();
         String messageCrypter = "";
@@ -115,7 +107,22 @@ public class MainActivity extends AppCompatActivity {
         }
         return messageCrypter;
     }
+    //Méthode pour décrypter
 
+    public String decrypter(String message, int cle){
+        message = message.toLowerCase();
+        String messageCrypter = "";
+
+        for(int i = 0; i < message.length(); i++){
+            int charPos = alphabetString.indexOf(message.charAt(i));
+            int key = (cle - charPos) % 26;
+            char replace = alphabetString.charAt(key);
+            messageCrypter += replace;
+            tv_recu.setText(messageCrypter);
+        }
+        return messageCrypter;
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -142,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     return false;
     }
 
-
+    //Gérer le menu et les items du menu.
     public boolean onOptionsItemSelected(MenuItem item){
 
         switch(item.getItemId()){
@@ -164,16 +171,12 @@ public class MainActivity extends AppCompatActivity {
                 }catch(IOException e){
                     e.printStackTrace();
                 }
-                et_texte.getText();
                 tv_recu.setText(mesDonnees);
                 return true;
             case R.id.mnu_cle:
 
                 Intent intent = new Intent(MainActivity.this, cleDecalage.class);
                 startActivity(intent);
-
-
-
                 return true;
             case R.id.mnu_quitter:
                 System.exit(0);
@@ -181,9 +184,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mnu_sauvegarde:
                 try {
                     FileOutputStream fichierOut = new FileOutputStream(monFichierExternes);
-                    fichierOut.write(et_texte.getText().toString().getBytes());
+                    fichierOut.write(tv_recu.getText().toString().getBytes());
                     fichierOut.close();
-                    et_texte.setText("");
+                    tv_recu.setText("");
                     Toast toast = Toast.makeText(getApplicationContext(), nomFichier + " sauvegarder", Toast.LENGTH_LONG);
                     toast.show();
                 }catch (IOException e){
