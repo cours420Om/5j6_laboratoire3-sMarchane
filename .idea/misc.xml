@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sif/AndroidStudioProjects/Labo3/app/src/main/res/layout/activity_cle_decalage.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Sif/AndroidStudioProjects/Labo3/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Sif/AndroidStudioProjects/Labo3/app/src/main/res/layout/activity_ouverture_fichier.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Sif/AndroidStudioProjects/Labo3/app/src/main/res/menu/menu_items.xml" value="0.365625" />
       </map>
     </option>
