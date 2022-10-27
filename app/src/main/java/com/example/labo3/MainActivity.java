@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     fichierOut.write(et_texte.getText().toString().getBytes());
                     fichierOut.close();
                     et_texte.setText("");
-                    Toast toast = Toast.makeText(getApplicationContext(), "Sauvegarder", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), nomFichier + " sauvegarder", Toast.LENGTH_LONG);
                     toast.show();
                 }catch (IOException e){
                     e.printStackTrace();
