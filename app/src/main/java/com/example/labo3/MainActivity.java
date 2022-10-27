@@ -27,10 +27,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
-    EditText et_texte;
+    EditText et_texte, et_cleDecalage;
     Button btn_crypter, btn_decrypter;
     TextView tv_recu;
     MenuItem mnu_ouvrir;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private String chemin = "MyFileStorage";
     File monFichierExternes;
     String mesDonnees = "";
+    private static final String alphabetString = "abcdefghijklmnopqrstuvwxyz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
         et_texte = (EditText)findViewById(R.id.et_text);
         btn_crypter = (Button)findViewById(R.id.btn_crypter);
         btn_decrypter = (Button)findViewById(R.id.btn_decrypter);
+        et_cleDecalage = (EditText)findViewById(R.id.et_cle);
         tv_recu = (TextView)findViewById(R.id.tv_reception);
+
+
+
 
         Toolbar tb_action = (Toolbar) findViewById(R.id.tb_barreAction);
         setSupportActionBar(tb_action);
@@ -66,11 +72,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String messageACrypter = String.valueOf(et_texte.getText());
+                Bundle extras = getIntent().getExtras();
+                String cle = extras.getString("cle");
 
-                int cle = 3;
-
-                /*try {
+                crypter(et_texte.getText().toString(), Integer.parseInt(cle));/*try {
                     FileOutputStream fichierOut = new FileOutputStream(monFichierExternes);
                     fichierOut.write(et_texte.getText().toString().getBytes());
                     fichierOut.close();
@@ -96,6 +101,19 @@ public class MainActivity extends AppCompatActivity {
                 //tv_recu.setText(mesDonnees);
             }
         });
+    }
+    public String crypter(String message, int cle){
+        message = message.toLowerCase();
+        String messageCrypter = "";
+
+        for(int i = 0; i < message.length(); i++){
+            int charPos = alphabetString.indexOf(message.charAt(i));
+            int key = (cle + charPos) % 26;
+            char replace = alphabetString.charAt(key);
+            messageCrypter += replace;
+            tv_recu.setText(messageCrypter);
+        }
+        return messageCrypter;
     }
 
 
@@ -146,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 }catch(IOException e){
                     e.printStackTrace();
                 }
+                et_texte.getText();
                 tv_recu.setText(mesDonnees);
                 return true;
             case R.id.mnu_cle:
